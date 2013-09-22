@@ -44,7 +44,7 @@ public class DisplayColorCalibration {
     }
 
     public static String getDefaultColors() {
-        return "2000000000 2000000000 2000000000";
+        return "255 255 255";
     }
 
     public static String getCurColors()  {
