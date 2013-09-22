@@ -43,10 +43,6 @@ public class DisplayColorCalibration {
         return 0;
     }
 
-    public static String getDefaultColors() {
-        return "255 255 255";
-    }
-
     public static String getCurColors()  {
         StringBuilder values = new StringBuilder();
         for (String filePath : FILE_PATH) {
