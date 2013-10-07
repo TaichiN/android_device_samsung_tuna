@@ -23,8 +23,10 @@ import java.io.File;
  */
 public class LongTermOrbits {
 
+    // We use the "7 day" data file
     private static final String LTO_SRC = "http://gllto.glpals.com/7day/v2/latest/lto2.dat";
     private static final File LTO_DST = new File("/data/gps/lto.dat");
+    private static final long DOWNLOAD_INTERVAL_DEFAULT = 259200000; /* 3 days */
 
     /**
      * Whether device supports the LTO technology.
@@ -46,5 +48,15 @@ public class LongTermOrbits {
      * @return File The LTO source location.
      */
     public static File getDestinationLocation() { return LTO_DST; }
+
+    /**
+     * Returns the interval in milliseconds to trigger the LTO data download.<br/>
+     * <br/>
+     * As convenience, implementations should set the download interval to the half of the
+     * validity of the downloaded data.
+     *
+     * @return long The download interval in milliseconds
+     */
+    public static long getDownloadInterval() { return DOWNLOAD_INTERVAL_DEFAULT; }
 
 }
