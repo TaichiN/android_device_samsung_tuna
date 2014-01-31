@@ -20,6 +20,10 @@ on init
     mkdir /mnt/media_rw/usbdisk 0775 system system
     mkdir /storage/usbdisk 0000 system system
 
+    # activate zram
+    swapon_all fstab.tuna
+    write /proc/sys/vm/page-cluster 0
+
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
 
@@ -80,10 +84,6 @@ on fs
 	restorecon /factory/bluetooth/bt_addr
 	mount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/efs /factory ro remount
 	setprop ro.crypto.fuse_sdcard true
-
-    # activate zram
-    swapon_all fstab.tuna
-    write /proc/sys/vm/page-cluster 0
 
 # change permissions for mtd device
 	chmod 0660 /dev/mtd/mtd0
