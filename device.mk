@@ -93,10 +93,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp
 
-# Enable KSM by default
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.ksm=1
-
 # Torch
 PRODUCT_PACKAGES += \
         Torch
