@@ -50,7 +50,8 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
-	audio.usb.default
+	audio.usb.default \
+	audio.r_submix.default
 
 PRODUCT_COPY_FILES += \
 	$(DEVICE_FOLDER)/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
@@ -186,6 +187,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.sf.lcd_density=320 \
 	ro.hwui.disable_scissor_opt=true
 
+# GPU producer to CPU consumer not supported
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.bq.gpu_to_cpu_unsupported=1
+
 PRODUCT_CHARACTERISTICS := nosdcard
 
 PRODUCT_TAGS += \
@@ -199,9 +204,13 @@ PRODUCT_PACKAGES += \
 	e2fsck \
 	setup_fs
 
-# Don't preload EGL drivers in Zygote at boot time
+# Enable KSM by default
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.zygote.disable_gl_preload=true
+	ro.ksm.default=1
+
+# Recovery
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.cwm.forbid_format=/factory,/boot,/sbl,/xloader
 
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 
